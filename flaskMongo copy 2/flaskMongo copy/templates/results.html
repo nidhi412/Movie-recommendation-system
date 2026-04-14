@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Results</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-image: url("/static/images/WebPage Background picture.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #f1f1f1;
+    }
+
+    header {
+      background-color: rgba(0, 0, 0, 0.85);
+      padding: 20px;
+      text-align: center;
+      color: white;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .logout-btn, .back-btn {
+      position: fixed;
+      top: 20px;
+      padding: 8px 14px;
+      border-radius: 5px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+    }
+
+    .logout-btn {
+      right: 20px;
+      background-color: #dc3545;
+    }
+
+    .back-btn {
+      left: 20px;
+      background-color: #3498db;
+    }
+
+    .container {
+      padding: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .movie-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 30px;
+    }
+
+    .movie-card {
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.6);
+      overflow: hidden;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .movie-card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .movie-card h2 {
+      font-size: 1.2rem;
+      margin: 10px 0 5px;
+      color: #fff;
+    }
+
+    .movie-card p {
+      font-size: 0.85rem;
+      color: #ccc;
+      margin: 4px 0;
+    }
+
+    .movie-card a {
+      color: #4da3ff;
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+
+    .movie-card a:hover {
+      text-decoration: underline;
+    }
+
+    .btn-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .btn-row button, .btn-row a {
+      background-color: #28a745;
+      border: none;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-row button:hover {
+      background-color: #218838;
+    }
+
+    .btn-row a {
+      background-color: #3498db;
+    }
+
+    .btn-row a:hover {
+      background-color: #2980b9;
+    }
+
+    .error {
+      background: #c62828;
+      padding: 12px;
+      border-radius: 8px;
+      color: white;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<a href="/" class="back-btn">← Back to Search</a>
+<a href="/logout" class="logout-btn">Logout</a>
+
+<header>Search Results</header>
+
+<div class="container">
+  {% if error_message %}
+    <div class="error">{{ error_message }}</div>
+  {% endif %}
+
+  {% if recommendations %}
+    <div class="movie-grid">
+      {% for movie in recommendations %}
+        <div class="movie-card">
+          {% if movie.poster_url %}
+            <img src="{{ movie.poster_url }}" alt="{{ movie.movie_title }}">
+          {% endif %}
+          <h2>{{ movie.movie_title or "Unknown Title" }}</h2>
+          <p><strong>Year:</strong> {{ movie.title_year or "N/A" }} | <strong>Language:</strong> {{ movie.language or "N/A" }}</p>
+          <p><strong>IMDb:</strong> {{ movie.imdb_score or "N/A" }}</p>
+          <p><strong>Genre:</strong> {{ movie.genres or "N/A" }}</p>
+          <p><strong>Actors:</strong>
+            {% if movie.actors %}
+              {% for actor in movie.actors %}
+                {{ actor.name }}{% if not loop.last %}, {% endif %}
+              {% endfor %}
+            {% else %} Unknown {% endif %}
+          </p>
+          <p><strong>Director:</strong> {{ movie.director.name if movie.director and movie.director.name else "Unknown" }}</p>
+          <div class="btn-row">
+            <form method="POST" action="/add_favorite">
+              <input type="hidden" name="movie_id" value="{{ movie._id }}">
+              <button type="submit">Add to Favorites</button>
+            </form>
+            {% if movie.movie_imdb_link %}
+              <a href="{{ movie.movie_imdb_link }}" target="_blank">Trailer</a>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p style="text-align: center; color: white; font-size: 1.2rem;">No results found. Try a different search.</p>
+  {% endif %}
+</div>
+
+</body>
+</html>

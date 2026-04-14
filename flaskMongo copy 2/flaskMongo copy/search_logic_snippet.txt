@@ -1,0 +1,46 @@
+import json
+from flask import Flask, render_template, request, redirect, url_for, flash
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+
+# assuming movies.json is in the same folder
+MOVIES_FILE = "movies.json"
+
+@app.route("/results", methods=["POST"])
+@login_required
+def results():
+    try:
+        movie_name = request.form.get("movie_name", "").lower()
+        actor_name = request.form.get("actor_name", "").lower()
+        director_name = request.form.get("director_name", "").lower()
+        release_year = request.form.get("release_year", "")
+        genres = request.form.get("genres", "").lower()
+        imdb_score = request.form.get("imdb_score", "")
+
+        with open(MOVIES_FILE, "r") as f:
+            movies = json.load(f)
+
+        recommendations = []
+        for movie in movies:
+            if movie_name and movie_name not in movie.get("movie_title", "").lower():
+                continue
+            if actor_name and not any(actor_name in actor.get("name", "").lower() for actor in movie.get("actors", [])):
+                continue
+            if director_name and director_name not in movie.get("director", {}).get("name", "").lower():
+                continue
+            if release_year and str(movie.get("title_year")) != release_year:
+                continue
+            if genres and genres not in movie.get("genres", "").lower():
+                continue
+            if imdb_score:
+                try:
+                    if float(movie.get("imdb_score", 0)) < float(imdb_score):
+                        continue
+                except ValueError:
+                    pass
+            recommendations.append(movie)
+
+        return render_template("results.html", recommendations=recommendations)
+
+    except Exception as e:
+        print(f"Error loading or filtering movies: {e}")
+        return render_template("results.html", recommendations=[], error_message="Something went wrong.")

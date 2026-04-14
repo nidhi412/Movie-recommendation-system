@@ -1,0 +1,86 @@
+[
+  {
+    "username": "sigma02",
+    "email": "khanabdul.8696@gmail.com",
+    "password": "$2b$12$lD7670c6yda2B0jrgMVrzugUOaU2QlF6IyIFmIbLuNd9xvtZ2NYMW",
+    "favorites": [
+      {
+        "_id": "67e446c7909f04f7d8ee1f43",
+        "movie_title": "The Godfather",
+        "title_year": 1972,
+        "genres": [
+          "Crime",
+          "Drama"
+        ],
+        "imdb_score": 9.2,
+        "movie_imdb_link": "http://www.imdb.com/title/tt0068646/?ref_=fn_tt_tt_1"
+      },
+      {
+        "_id": "67e446c7909f04f7d8ee1a6e",
+        "movie_title": "Spotlight",
+        "title_year": 2015,
+        "genres": [
+          "Biography",
+          "Crime",
+          "Drama",
+          "History"
+        ],
+        "imdb_score": 8.1,
+        "movie_imdb_link": "http://www.imdb.com/title/tt1895587/?ref_=fn_tt_tt_1"
+      },
+      {
+        "_id": "67e446c7909f04f7d8ee1258",
+        "movie_title": "Inception",
+        "title_year": 2010,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Sci-Fi",
+          "Thriller"
+        ],
+        "imdb_score": 8.8,
+        "movie_imdb_link": "http://www.imdb.com/title/tt1375666/?ref_=fn_tt_tt_1"
+      }
+    ]
+  },
+  {
+    "username": "sigma01",
+    "email": "askhan2@lakeheadu.ca",
+    "password": "$2b$12$5cC2EMGgEZjfBziPBUpP4./7MVEyGyU5xp02B28PPYD99LW.V.OP."
+  },
+  {
+    "username": "npatel98",
+    "email": "npatel98@lakeheadu.ca",
+    "password": "$2b$12$e5qackSWLJyNRezU5ki9Juvg5CHfAWCTXv3QHfRw2HL96KPpl7cIK",
+    "favorites": [
+      {
+        "_id": "67e446c7909f04f7d8ee13ee",
+        "movie_title": "The Lion King",
+        "title_year": 1994,
+        "genres": [
+          "Adventure",
+          "Animation",
+          "Drama",
+          "Family",
+          "Musical"
+        ],
+        "imdb_score": 8.5,
+        "movie_imdb_link": "http://www.imdb.com/title/tt0110357/?ref_=fn_tt_tt_1"
+      },
+      {
+        "_id": "67e446c7909f04f7d8ee1222",
+        "movie_title": "Toy Story 3",
+        "title_year": 2010,
+        "genres": [
+          "Adventure",
+          "Animation",
+          "Comedy",
+          "Family",
+          "Fantasy"
+        ],
+        "imdb_score": 8.3,
+        "movie_imdb_link": "http://www.imdb.com/title/tt0435761/?ref_=fn_tt_tt_1"
+      }
+    ]
+  }
+]
