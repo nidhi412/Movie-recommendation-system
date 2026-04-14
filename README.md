@@ -96,11 +96,6 @@ The complete Flask application (backend, frontend, and deployment files) used in
 
 ---
 
-##  Authors
-- Nidhi Patel  
-- Abdul Khan  
-
----
 
 ##  References
 - IMDb 5000 Movie Dataset (Kaggle)  
