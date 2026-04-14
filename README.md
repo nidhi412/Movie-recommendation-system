@@ -75,21 +75,8 @@ https://flask-movie-app-khwp.onrender.com/login
 
 ---
 
-##  Repository Contents
-- MovieDB.ipynb → Data preprocessing and analysis notebook  
-- Report.pdf → Final project report  
-- Presentation.pptx → Project presentation slides  
 
----
-
-##  Note
-This repository contains the **data preprocessing notebook and project documentation only**.  
-The complete Flask application (backend, frontend, and deployment files) used in this project is not included.
-
----
-
-##  Future Improvements
-- Add full Flask application source code  
+##  Future Improvements 
 - Improve recommendation accuracy using additional features  
 - Integrate newer movie datasets (post-2016)  
 - Explore hybrid recommendation systems  
